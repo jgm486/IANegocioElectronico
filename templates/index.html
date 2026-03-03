@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Analizador de Sentimiento</title>
+    <style>
+        body { font-family: sans-serif; }
+        form { margin-bottom: 20px; }
+        textarea { width: 100%; height: 100px; margin-bottom: 10px; }
+        button { padding: 10px 20px; cursor: pointer; }
+        #resultado { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Analizador de Sentimiento de Frases</h1>
+
+    <form method="POST" action="/predecir_ui">
+        <textarea id="frase" name="frase" placeholder="Escribe aquí tu frase"></textarea>
+        <button type="submit">Analizar Sentimiento</button>
+    </form>
+
+    {% if sentimiento_predicho %}
+        <div id="resultado">
+            Sentimiento predicho para la frase: "{{ frase_analizada }}" es: <span class="{{ sentimiento_predicho | lower }}">{{ sentimiento_predicho }}</span> con una predicción del {{ probabilidad }}
+        </div>
+    {% endif %}
+
+    <style> /* Estilos para resaltar el sentimiento */
+        .positivo { color: green; }
+        .negativo { color: red; }
+        .neutro { color: blue; }
+    </style>
+
+</body>
+</html>
